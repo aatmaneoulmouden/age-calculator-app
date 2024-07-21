@@ -9,3 +9,17 @@
     @apply bg-neutral-off-white font-poppins;
   }
 }
+
+@layer components {
+  .result-label {
+    @apply text-7xl font-extrabold italic text-neutral-off-black;
+  }
+
+  .result-label:not(:last-child) {
+    @apply mb-2;
+  }
+
+  .result-label span {
+    @apply text-primary-purple;
+  }
+}
