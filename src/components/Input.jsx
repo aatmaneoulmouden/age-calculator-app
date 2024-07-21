@@ -9,7 +9,7 @@ const Input = (props) => {
         id={props.id}
         name={props.name}
         placeholder={props.placeholder}
-        className="input w-full outline-none border border-neutral-light-grey rounded-md p-4 text-2xl font-bold placeholder:text-neutral-smokey-grey/70"
+        className="input w-full outline-none border border-neutral-light-grey rounded-md p-4 text-2xl font-bold text-neutral-off-black placeholder:text-neutral-smokey-grey/70 cursor-pointer transition ease-linear delay-75 hover:placeholder:text-neutral-smokey-grey/90 focus:border-primary-purple"
       />
       <small className="error"></small>
     </div>
