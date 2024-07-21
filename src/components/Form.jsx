@@ -36,7 +36,16 @@ const Form = () => {
   ));
   return (
     <form action="" className="form">
-      <div className="fields-wrapper flex gap-7">{displayInputs}</div>
+      <div className="fields-wrapper flex gap-7 pb-10">{displayInputs}</div>
+      <div className="border-b w-[560px] relative">
+        <button aria-label="Submit" className="w-16 h-16 bg-primary-purple flex justify-center items-center rounded-full absolute top-1/2 right-0 -translate-y-1/2">
+          <img
+            src="/icon-arrow.svg"
+            alt="Submit"
+            className="w-7"
+          />
+        </button>
+      </div>
     </form>
   );
 };
