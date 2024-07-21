@@ -22,6 +22,9 @@ export default {
           'off-black': 'hsl(0, 0%, 8%)',
         },
       },
+      boxShadow: {
+        main: 'rgba(149, 157, 165, 0.01) 0px 8px 24px;'
+      }
     },
   },
   plugins: [],
