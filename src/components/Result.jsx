@@ -1,15 +1,24 @@
+import { useSnapshot } from "valtio";
+import { results } from "../states/results";
+
 const Result = () => {
-  return <div className="result pt-10">
-    <div className="result-label years">
-        <span className="result-value">--</span> years
-    </div>
-    <div className="result-label months">
+  const snapResults = useSnapshot(results);
+  return (
+    <div className="result pt-10">
+      <div className="result-label years">
+        <span className="result-value">
+          {snapResults.years ? snapResults.years : "--"}
+        </span>{" "}
+        years
+      </div>
+      <div className="result-label months">
         <span className="result-value">--</span> months
-    </div>
-    <div className="result-label days">
+      </div>
+      <div className="result-label days">
         <span className="result-value">--</span> days
+      </div>
     </div>
-  </div>;
+  );
 };
 
 export default Result;
