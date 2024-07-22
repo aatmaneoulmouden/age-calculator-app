@@ -11,6 +11,21 @@
 }
 
 @layer components {
+
+  /* Form */
+  .input-wrapper {
+    @apply w-32;
+  }
+
+  .label {
+    @apply block text-[12px] uppercase text-neutral-smokey-grey font-semibold tracking-[2px] mb-1 cursor-pointer;
+  }
+
+  .input {
+    @apply w-full outline-none border border-neutral-light-grey rounded-md p-4 text-2xl font-bold text-neutral-off-black placeholder:text-neutral-smokey-grey/70 cursor-pointer transition ease-linear delay-75 hover:placeholder:text-neutral-smokey-grey/90 focus:border-primary-purple;
+  }
+
+  /* Result */
   .result-label {
     @apply text-7xl font-extrabold italic text-neutral-off-black;
   }
