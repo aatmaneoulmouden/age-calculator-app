@@ -12,10 +12,16 @@ const Result = () => {
         years
       </div>
       <div className="result-label months">
-        <span className="result-value">--</span> months
+        <span className="result-value">
+          {snapResults.months ? snapResults.months : "--"}
+        </span>{" "}
+        months
       </div>
       <div className="result-label days">
-        <span className="result-value">--</span> days
+        <span className="result-value">
+          {snapResults.days ? snapResults.days : "--"}
+        </span>{" "}
+        days
       </div>
     </div>
   );

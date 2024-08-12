@@ -26,14 +26,33 @@ const Form = () => {
   function handleClick(e) {
     e.preventDefault();
 
-    // Get Today's date using moment package
-    const today = {
-      day: moment().date(),
-      month: moment().month(),
-      year: moment().year(),
-    };
+    const today = new Date();
 
-    results.years = today.year - parseInt(formData.year);
+    const birthDateData = `${formData.year}-${formData.month}-${formData.day}`;
+    const birthDate = new Date(birthDateData);
+
+    let years = today.getFullYear() - birthDate.getFullYear();
+    let months = today.getMonth() - birthDate.getMonth();
+    let days = today.getDate() - birthDate.getDate();
+
+    // Adjust for nigative days (if today is less then birth day)
+    if (days < 0) {
+      months--;
+
+      // Add to days last day in the last month
+      days += new Date(today.getFullYear(), today.getMonth(), 0).getDate();
+    }
+
+    // Adjust for nigative months (if current month is less then birth month)
+    if (months < 0) {
+      years--;
+      months += 12;
+    }
+    
+    // Update data in results file
+    results.years = years;
+    results.months = months;
+    results.days = days;
   }
 
   return (
