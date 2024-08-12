@@ -14,6 +14,11 @@ const Form = () => {
     year: "",
   });
 
+  // Function: prefix numbers by 0 if less then 10
+  function prefixZero(number) {
+    return number < 10 ? '0' + number : number;
+  }
+
   // Function: update state whenever input's value changes
   function handleChange(e) {
     const { name, value } = e.target;
@@ -50,9 +55,9 @@ const Form = () => {
     }
     
     // Update data in results file
-    results.years = years;
-    results.months = months;
-    results.days = days;
+    results.years = prefixZero(years);
+    results.months = prefixZero(months);
+    results.days = prefixZero(days);
   }
 
   return (
