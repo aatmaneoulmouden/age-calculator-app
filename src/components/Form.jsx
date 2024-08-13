@@ -1,5 +1,4 @@
-import moment from "moment";
-import { useId, useState } from "react";
+import { useEffect, useId, useState } from "react";
 import { useSnapshot } from "valtio";
 import { results } from "../states/results";
 
@@ -14,9 +13,24 @@ const Form = () => {
     year: "",
   });
 
+  const [formErrors, setFormErrors] = useState({
+    day: {
+      hasError: false,
+      message: null,
+    },
+    month: {
+      hasError: false,
+      message: null,
+    },
+    year: {
+      hasError: false,
+      message: null,
+    },
+  });
+
   // Function: prefix numbers by 0 if less then 10
   function prefixZero(number) {
-    return number < 10 ? '0' + number : number;
+    return number < 10 ? "0" + number : number;
   }
 
   // Function: update state whenever input's value changes
@@ -27,9 +41,62 @@ const Form = () => {
     });
   }
 
+  // useEffect(() => {
+  //   console.log(formErrors.day.hasError);
+  // }, [formErrors]);
+
   // Function: Get form data and calculate age when submitting the form
   function handleClick(e) {
     e.preventDefault();
+
+    // Errors handling
+    if (formData.day.length < 1) {
+      setFormErrors((prevFormErrors) => {
+        return {
+          ...prevFormErrors,
+          day: { hasError: true, message: "This field is required" },
+        };
+      });
+    } else {
+      setFormErrors((prevFormErrors) => {
+        return {
+          ...prevFormErrors,
+          year: { hasError: false, message: "This field is required" },
+        };
+      });
+    }
+
+    if (formData.month.length < 1) {
+      setFormErrors((prevFormErrors) => {
+        return {
+          ...prevFormErrors,
+          month: { hasError: true, message: "This field is required" },
+        };
+      });
+    } else {
+      setFormErrors((prevFormErrors) => {
+        return {
+          ...prevFormErrors,
+          year: { hasError: false, message: "This field is required" },
+        };
+      });
+    }
+
+    if (formData.year.length < 1) {
+      setFormErrors((prevFormErrors) => {
+        return {
+          ...prevFormErrors,
+          year: { hasError: true, message: "This field is required" },
+        };
+      });
+    } else {
+      setFormErrors((prevFormErrors) => {
+        return {
+          ...prevFormErrors,
+          year: { hasError: false, message: "This field is required" },
+        };
+      });
+    }
 
     const today = new Date();
 
@@ -53,7 +120,7 @@ const Form = () => {
       years--;
       months += 12;
     }
-    
+
     // Update data in results file
     results.years = prefixZero(years);
     results.months = prefixZero(months);
@@ -72,11 +139,15 @@ const Form = () => {
             id={`${id}-day`}
             name="day"
             placeholder="DD"
-            className="input"
+            className={`input ${formErrors.day.hasError ? "has-error" : ""}`}
             value={formData.day}
             onChange={handleChange}
           />
-          <small className="error"></small>
+          {formErrors.day.hasError && (
+            <small className="error text-primary-light-red">
+              {formErrors.day.message}
+            </small>
+          )}
         </div>
 
         <div className="input-wrapper">
@@ -88,11 +159,15 @@ const Form = () => {
             id={`${id}-month`}
             name="month"
             placeholder="MM"
-            className="input"
+            className={`input ${formErrors.day.hasError ? "has-error" : ""}`}
             value={formData.month}
             onChange={handleChange}
           />
-          <small className="error"></small>
+          {formErrors.month.hasError && (
+            <small className="error text-primary-light-red">
+              {formErrors.day.message}
+            </small>
+          )}
         </div>
 
         <div className="input-wrapper">
@@ -104,11 +179,15 @@ const Form = () => {
             id={`${id}-year`}
             name="year"
             placeholder="YYYY"
-            className="input"
+            className={`input ${formErrors.day.hasError ? "has-error" : ""}`}
             value={formData.year}
             onChange={handleChange}
           />
-          <small className="error"></small>
+          {formErrors.year.hasError && (
+            <small className="error text-primary-light-red">
+              {formErrors.day.message}
+            </small>
+          )}
         </div>
       </div>
       <div className="border-b w-[560px] relative">

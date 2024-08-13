@@ -31,6 +31,10 @@
     @apply w-full outline-none border border-neutral-light-grey rounded-md p-4 text-2xl font-bold text-neutral-off-black placeholder:text-neutral-smokey-grey/70 cursor-pointer transition ease-linear delay-75 hover:placeholder:text-neutral-smokey-grey/90 focus:border-primary-purple;
   }
 
+  .input.has-error {
+    @apply border-primary-light-red;
+  }
+
   /* Result */
   .result-label {
     @apply text-7xl font-extrabold italic text-neutral-off-black;
